@@ -13,23 +13,26 @@ export function TodoList() {
     settodoList(todoList.filter((x) => x.id != id))
   }
   const addTodo = () => {
-    const item = { id: Math.random(), title: NewTodoItem }
+    const max = todoList.reduce((a, b) => (a > b.id ? a : b.id), -Infinity)
+    const item = { id: max + 1, title: NewTodoItem }
     const items = produce(todoList, (todoListnew) => {
       todoListnew.push(item)
     })
     settodoList(items)
+    setNewTodoItem('')
   }
 
   const [NewTodoItem, setNewTodoItem] = useState('')
   const [todoList, settodoList] = useState(todoListInit)
   return (
-    <>
+    <div className="container">
       <input
+        value={NewTodoItem}
         type="text"
         onChange={(e) => setNewTodoItem(e.target.value)}
       ></input>
       <button onClick={addTodo}>add</button>
-      <table>
+      <table className="table table-striped">
         <thead>
           <tr>
             <td>id</td>
@@ -47,6 +50,6 @@ export function TodoList() {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   )
 }

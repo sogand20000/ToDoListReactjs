@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, memo, useCallback } from 'react'
 import { TodoModel } from './Interface/TodoModel'
 import { produce } from 'immer'
 
-import { TodoItem } from './ToDoItem'
+import TodoItem from './ToDoItem'
 const todoListInit = [
   { id: 1, title: 'task 1' },
   { id: 2, title: 'task 2' },
   { id: 3, title: 'task 3' },
 ]
-export function TodoList() {
-  const removeTodo = (id: number) => {
+function TodoList() {
+
+  const removeTodo = useCallback((id: number) => {
     settodoList(todoList.filter((x) => x.id != id))
-  }
+  }, [])
+
   const addTodo = () => {
     const max = todoList.reduce((a, b) => (a > b.id ? a : b.id), -Infinity)
     const item = { id: max + 1, title: NewTodoItem }
@@ -53,3 +55,4 @@ export function TodoList() {
     </div>
   )
 }
+export default memo(TodoList)

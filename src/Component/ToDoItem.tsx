@@ -1,12 +1,11 @@
 import React, { memo, useEffect } from 'react'
-import { TodoModel } from './Interface/TodoModel'
+import { TodoModel } from '../Interface/TodoModel'
 
 interface props {
   todo: TodoModel
   onRemoveTodo: any
 }
 function TodoItem({ todo, onRemoveTodo }: props) {
-  console.log('TodoItem', todo.id)
   useEffect(() => {}, [])
 
   return (

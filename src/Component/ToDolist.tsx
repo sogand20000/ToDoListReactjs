@@ -1,5 +1,5 @@
 import React, { useState, memo, useCallback } from 'react'
-import { TodoModel } from './Interface/TodoModel'
+import { TodoModel } from '../Interface/TodoModel'
 import { produce } from 'immer'
 
 import TodoItem from './ToDoItem'
